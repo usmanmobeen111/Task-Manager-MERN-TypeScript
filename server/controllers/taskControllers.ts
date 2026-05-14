@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Task, { ITask } from '../models/Task.js';
+import Task, { ITask } from '../models/Task.ts';
 
 export const getTasks = async (
   req: Request,
@@ -183,14 +183,15 @@ export const updateTask = async (req: Request, res: Response): Promise<void>=>{
 
 export const deleteTask = async(req:Request, res:Response):Promise<void>=>{
     try {
+        console.log("Deleting task with ID:", req.params.id)
         const task = await Task.findById(req.params.id)
         
     if(!task){
         res.status(404).json({message: "Task not found"})
         return
     }
-    await Task.findByIdAndDelete(req.params.id)
-    res.json({message: "Task deleted successfully"})
+    const deletedTask = await task.deleteOne()
+    res.json({message: "Task deleted successfully", deletedTask})
     } catch (error: any) {
         console.log(error.message)
         res.status(500).json({
