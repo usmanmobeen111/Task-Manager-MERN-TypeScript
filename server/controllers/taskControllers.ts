@@ -200,3 +200,23 @@ export const deleteTask = async(req:Request, res:Response):Promise<void>=>{
         })
     }
 }
+
+export const updateTaskStatus = async(req:Request, res:Response):Promise<void>=>{
+    try {
+        const {status} = req.body
+        const task = await Task.findById(req.params.id)
+        if(!task){
+            res.status(404).json({message: "Task not found"})
+            return
+        }
+       task.status = status
+       const updatedTask = await task.save()
+       res.json({message: "Task status updated successfully", updatedTask})
+    } catch (error: any) {
+        console.log(error.message)
+        res.status(500).json({
+            message: "Error updating task status",
+            error: error.message
+        })
+    }
+}
