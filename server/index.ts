@@ -8,7 +8,7 @@ connectDB()
 const PORT = process.env.PORT || 4000
 const app = express()
 
-console.log("Haaaaalo") 
+console.log("Haaaaalogffdsgfdsgdfsgskjhgkjhkjhkj") 
 
 app.use(express.json())
 app.use(cors())

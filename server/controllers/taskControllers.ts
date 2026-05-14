@@ -1,10 +1,11 @@
 import { Request, Response } from 'express';
-import Task from '../models/Task.js';
+import Task, { ITask } from '../models/Task.js';
 
 export const getTasks = async (
   req: Request,
   res: Response
 ): Promise<void> => {
+  
 
   try {
 
@@ -62,7 +63,7 @@ export const getTasks = async (
 
     const tasks = await Task.find(filter).sort(sort);
 
-    res.json(tasks);
+    res.json({message: "Tasks fetched successfully", tasks});
 
   } catch (error: any) {
 
@@ -74,3 +75,70 @@ export const getTasks = async (
   }
 
 };
+
+
+export const getTask = async (req: Request, res: Response):Promise<void>=>{
+  try {
+    const {id} = req.params
+    const task = await Task.findById(id)
+    if(!task){
+        res.status(404).json({message: "Task not found"})
+        return
+    }
+    res.json(task)
+
+  } catch (error: any) {
+    res.status(500).json({
+        message: "Error fetching task",
+        error: error.message
+    })
+  }
+}
+
+export const createTask = async (req: Request, res: Response): Promise<void> =>{
+    
+    try{
+        const {title, description, deadline, priority,tags, status } :ITask = req.body
+
+        if(!title){
+            res.status(400).json({message: "Title is required"})
+            return
+        }
+        if(!description){
+            res.status(400).json({message: "Description is required"})
+            return
+        }
+        if(!deadline){
+            res.status(400).json({message: "Deadline is required"})
+            return
+        }
+        if(!priority){
+            res.status(400).json({message: "Priority is required"})
+            return
+        }
+        if(!tags){
+            res.status(400).json({message: "Tags is required"})
+            return
+        }
+        if(!status){
+            res.status(400).json({message: "Status is required"})
+            return
+        }
+        const task = await Task.create({
+            title,
+            description,
+            deadline,
+            priority,
+            tags,
+            status
+        })
+        res.json({message: "Task created successfully", task})
+
+    }catch(error: any){
+        console.log(error.message)
+        res.status(500).json({
+            message: "Error creating task",
+            error: error.message
+        })
+    }
+}
