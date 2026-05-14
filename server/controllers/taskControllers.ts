@@ -16,6 +16,7 @@ export const getTasks = async (
       sortOrder = 'desc',
       search
     } = req.query;
+    console.log(req.query)
 
     // Dynamic filter object
     const filter: Record<string, any> = {};
