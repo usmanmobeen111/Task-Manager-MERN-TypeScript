@@ -141,4 +141,61 @@ export const createTask = async (req: Request, res: Response): Promise<void> =>{
             error: error.message
         })
     }
+} 
+
+
+export const updateTask = async (req: Request, res: Response): Promise<void>=>{
+    try {
+     const {title, description, deadline, priority, tags, status}: ITask = req.body
+     const task = await Task.findById(req.params.id)
+     if(!task){
+        res.status(404).json({message: "Task not found"})
+        return
+     }
+     if(title !== undefined){
+        task.title = title
+     }
+     if(description !== undefined){
+        task.description = description
+     }
+     if(deadline !== undefined){
+        task.deadline = deadline
+     }
+     if(priority !== undefined){
+        task.priority = priority
+     }
+     if(tags !== undefined){
+        task.tags = tags
+     }
+     if(status !== undefined){
+        task.status = status
+     }   
+
+     const updatedTask = await task.save()
+     res.json({message: "Task updated successfully", updatedTask})
+    } catch (error: any) {
+        res.status(500).json({
+            message: "Error updating task",
+            error: error.message
+        })
+    }
+}
+
+export const deleteTask = async(req:Request, res:Response):Promise<void>=>{
+    try {
+        const task = await Task.findById(req.params.id)
+        
+    if(!task){
+        res.status(404).json({message: "Task not found"})
+        return
+    }
+    await Task.findByIdAndDelete(req.params.id)
+    res.json({message: "Task deleted successfully"})
+    } catch (error: any) {
+        console.log(error.message)
+        res.status(500).json({
+            message: "Error deleting task",
+            error: error.message
+        })
+    }
 }

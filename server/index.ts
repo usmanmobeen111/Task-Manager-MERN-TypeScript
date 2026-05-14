@@ -8,17 +8,16 @@ connectDB()
 const PORT = process.env.PORT || 4000
 const app = express()
 
-console.log("Haaaaalogffdsgfdsgdfsgskjhgkjhkjhkj") 
 
 app.use(express.json())
 app.use(cors())
 
 app.get("/", (req, res)=>{
-    res.send("Haaaaaalo")
+    res.send("Task Manager API is running...")
 })
 
 app.use("/api/tasks", taskRouter)
 
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`)
 })
