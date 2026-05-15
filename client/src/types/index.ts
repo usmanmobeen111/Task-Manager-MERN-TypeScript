@@ -27,6 +27,7 @@ export interface TaskListProps{
 export interface TaskCardProps{
     title:string,
     description?:string,
+    tags?:string,
     onDelete:()=>void,
     onEdit:()=>void,
 }

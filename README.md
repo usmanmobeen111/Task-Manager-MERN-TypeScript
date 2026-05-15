@@ -1,73 +1,68 @@
-# React + TypeScript + Vite
+# 🚀 Taskify - Modern Task Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Taskify Banner](https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=2072&auto=format&fit=crop)
 
-Currently, two official plugins are available:
+Taskify is a premium, full-stack task management application built with the **MERN** stack (MongoDB, Express, React, Node.js) and powered by **TypeScript**. It features a stunning user interface with smooth animations, glassmorphism effects, and real-time filtering to keep your productivity at its peak.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
 
-## React Compiler
+- **Full CRUD Operations**: Create, Read, Update, and Delete tasks effortlessly.
+- **Dynamic Filtering**: Filter tasks by status (All, Pending, In Progress, Completed) with instant UI updates.
+- **Premium UI/UX**: Designed with a focus on aesthetics using **Tailwind CSS** and **Framer Motion**.
+- **Responsive Design**: Seamlessly manage your tasks on mobile, tablet, or desktop.
+- **Rich Task Details**: Categorize tasks with tags, priority levels, and deadlines.
+- **Animated Interactions**: Smooth transitions and entrance animations for a high-end feel.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+### Frontend
+- **React 19** with **TypeScript**
+- **Tailwind CSS** for modern styling
+- **Framer Motion** for premium animations
+- **React Icons** for intuitive visuals
+- **Axios** for API communication
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Backend
+- **Node.js** & **Express**
+- **MongoDB** with **Mongoose**
+- **TypeScript** for end-to-end type safety
+- **Dotenv** for secure environment management
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Prerequisites
+- Node.js installed
+- MongoDB database (Local or Atlas)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Installation
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/usmanmobeen111/Task-Manager-MERN-TypeScript.git
+   cd Task-Manager-MERN-TypeScript
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+2. **Backend Setup**
+   ```bash
+   cd server
+   npm install
+   # Create a .env file and add your MONGODB_URI and PORT
+   npm run dev
+   ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+3. **Frontend Setup**
+   ```bash
+   cd ../client
+   npm install
+   # Create a .env file and add VITE_API_URL
+   npm run dev
+   ```
+
+## 👨‍💻 Author
+
+**Usman**  
+GitHub: [@usmanmobeen111](https://github.com/usmanmobeen111)
+
+---
+
+Developed with ❤️ by Usman.
